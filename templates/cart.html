@@ -1,0 +1,202 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+
+<head>
+    <title>
+        my site
+    </title>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+table{
+    color: yellow;
+}
+
+li {
+    float:right;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: green;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: yellow;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+{# .dropdown-content a:hover {background-color: #f1f1f1} #}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+
+
+
+    <meta charset="UTF-8">
+    <title>SIGNOUT</title>
+    <!-- bootstrap-css -->
+	<link href="{% static 'css/bootstrap.css' %} " rel="stylesheet" type="text/css" media="all" />
+	<!--// bootstrap-css -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}">
+	<!-- css -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css" media="all" />
+	<!--// css -->
+	<!-- font-awesome icons -->
+	<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' %}">
+	<!-- //font-awesome icons -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" type="text/css" media="all">
+    <style type="text/css">
+        body{
+            background-image: url("{% static 'images/3.jpg' %}");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+
+</head>
+
+<body>
+<!-- header -->
+                    <div class="navbar-header navbar-left">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbart">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.jpg' %}" alt="HP"/></a>
+					</div>
+<div class="collapse navbar-collapse navbar-right navbar-expand-sm" id="navbart">
+						<nav class="nav_starts">
+							<ul class="nav navbar-nav">
+                                <li><a href="http://127.0.0.1:8000/home/">Home</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">TRACK <b class="caret"></b></a>
+									<ul class="dropdown-menu nav_dropdown">
+										<li><a href="track">ORDER STATUS</a></li>
+										<li><a href="track">CANCEL ORDER</a></li>
+									</ul>
+                                </li>
+                                <li class="dropdown">
+									<a href="http://localhost:8000/cart/cart">CART <b class="caret"></b></a>
+                                </li>
+                                 <li><a href="/authapp/my_logout">logout</a></li>
+
+<form action="/productapp/search">
+ {% csrf_token %}
+ <select
+         name="pcat"
+      title="Search in"
+    >
+        <option selected="selected" value="search-alias=aps">All Categories</option>
+        <option value="Appliances">Appliances</option>
+        <option value="Apps & Games">Apps & Games</option>
+        <option value="Baby">Baby</option>
+        <option value="Beauty">Beauty</option>
+        <option value="Books">Books</option>
+        <option value="Car">Car</option>
+        <option value="Clothing">Clothing</option>
+        <option value="Computers">Computers</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Garden & Outdoors">Garden & Outdoors</option>
+        <option value="Gift Cards">Gift Cards</option>
+        <option value="Grocery">Grocery</option>
+        <option value="Health">Health</option>
+        <option value="Kitchen">Kitchen</option>
+        <option value="search-alias=jewelry">Jewellery</option>
+        <option value="Bags">Bags</option>
+        <option value="Music">Music</option>
+        <option value="Musical Instruments">Musical Instruments</option>
+        <option value="Pet Supplies">Pet Supplies</option>
+        <option value="Shoes & Handbags">Shoes & Handbags</option>
+        <option value="Software">Software</option>
+        <option value="Toys">Toys</option>
+        <option value="Video Games">Video Games</option>
+        <option value="Watches">Watches</option>
+    </select><input type="text" name="pname" placeholder="enter product name"><br>
+    <input type="submit" value="search"></form>
+
+
+
+
+
+
+
+<h2 style="color:sandybrown;">cart items</h2>
+<table border="1" bgcolor="yellow">
+<tr ><th>id</th>
+  <th>pid</th>
+  <th>qty</th>
+  <th>unitprice</th>
+  <th>tuprice</th>
+</tr>
+{% for ct in k %}
+<tr>
+<td>{{ ct.id }}</td>
+  <td>{{ ct.pid }}</td>
+  <td>{{ ct.units}}</td>
+  <td>{{ ct.unitprice }}</td>
+  <td>{{ ct.tuprice }}</td>
+   <td><a href="http://localhost:8000/cart/deletecart?id={{ct.id}}&pid={{ ct.pid }}&oqt={{ ct.units }}">delete</a></td>
+ <td><a href="http://localhost:8000/cart/modifycart?id={{ct.id}}&pid={{ct.pid}}&oqt={{ct.units}}">modify qty</a></td>
+</tr>
+{% endfor %}
+</table>
+Total price:{{tp}}
+<a href="">checkout</a><br>
+<a href="http://localhost:8000/home">click here to add another product</a>
+                            </ul>
+                        </nav>
+</div>
+</body>
+</html>
+
+
+ </body>
+</html>
